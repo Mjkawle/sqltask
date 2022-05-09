@@ -1,0 +1,12 @@
+Query:
+
+2.	select * from user inner join question on user.userid=question.userid inner join answer on user.userid=answer.userid;
+
+3.	select * from user left join question on user.userid=question.userid left join answer on user.userid=answer.userid;
+
+4.	select * from user right join question on user.userid=question.userid right join answer on user.userid=answer.userid;
+
+5.	select * from question where userid in (select userid from user where roleid=1);
+	select * from customer where amount > (select avg(amount) from customer);
+	select payment_purpose, amount from customer group by payment_purpose;
+	

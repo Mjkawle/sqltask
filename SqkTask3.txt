@@ -1,0 +1,16 @@
+Query:
+
+1.	select * from user inner join question on user.userid=question.userid;
+
+2.	select timestampdiff(year,dateofbirth,curdate()) as age from user;
+
+3.	select now();
+	select curdate();
+	select year(dateofbirth) from user;
+	select month(dateofbirth) from user;
+	select timestampdiff(day,dateofbirth,curdate()) from user;
+	select date_add(curdate(), interval 10 day);
+	select date_sub(curdate(), interval 10 day);
+	select date_format(dateofbirth, '%d %m %y');
+
+4.	show processlist;

@@ -14,3 +14,9 @@ Query:
 	select date_format(dateofbirth, '%d %m %y');
 
 4.	show processlist;
+
+5.	update userr set email='mayurjkawle@gmail.com' where userid=1;
+
+6.	select * from user inner join (select question.questionid, question.question , question.userid , answer.answer from question inner join answer on question.questionid=answer.questionid) DT on user.userid=DT.userid;
+
+7.

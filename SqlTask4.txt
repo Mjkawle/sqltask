@@ -1,0 +1,16 @@
+Query:
+
+2.	select gender,count(*) from user group by gender;
+
+3.
+
+4.	select countryname,sum(population) from country group by countryname having sum(population)>1000;
+
+5.	select distinct countryname, year from country ;
+	select countryname, sum(population) from country group by countryname;
+
+6.	select username as name from user union select countryname as name from country;
+
+7.	select countryname as name, sum(population) as count from country group by countryname having sum(population)>1000 union select username as name, marks as count from user where marks>80;
+
+8.	select * from country union all select * from country;

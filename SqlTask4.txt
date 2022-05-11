@@ -2,12 +2,19 @@ Query:
 
 2.	select gender,count(*) from user group by gender;
 
-3.	select
+3.	create view student_marks_detail as
+	select
 	student.studentname, subject.subjectname, marks.marks
 	from
 	student inner join usersubject on student.studentid=usersubject.studentid
 	inner join subject subject on usersubject.subjectid=subject.subjectid 
 	inner join marks on subject.subjectid=marks.subjectid and student.studentid=marks.studentid;
+
+	//this will create view which shows details about every student,subject,marks
+	//query for second highest score of every students
+
+	select * from student_marks_detail where marks in (select max(marks) from student_marks_detail where marks<(select max(marks) from student_marks_detail group by studentname);
+
 
 4.	select countryname,sum(population) from country group by countryname having sum(population)>1000;
 

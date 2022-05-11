@@ -1,0 +1,17 @@
+Query:
+
+2.	delimiter //
+	create procedure total_marks_of_student()
+	begin
+	select studentname,sum(marks) as total_marks from student_marks_detail group by studentname;
+	end//
+	delimiter ;
+
+	call total_marks_of_student();
+
+3.	select * from student_marks_detail order by studentname, marks desc;
+
+4.	create table student (stdid int primary key, stdname varchar(255));
+	create table question (queid int primary key, question varchar(900), stdid int, foreign key(stdid) references student(stdid) on delete cascade);
+
+5.	create table question(queid int primary key, question varchar(100), stdid int, foreign key(srdid) references student(stdid) on update cascade);

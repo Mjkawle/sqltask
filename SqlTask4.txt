@@ -2,7 +2,12 @@ Query:
 
 2.	select gender,count(*) from user group by gender;
 
-3.
+3.	select
+	student.studentname, subject.subjectname, marks.marks
+	from
+	student inner join usersubject on student.studentid=usersubject.studentid
+	inner join subject subject on usersubject.subjectid=subject.subjectid 
+	inner join marks on subject.subjectid=marks.subjectid and student.studentid=marks.studentid;
 
 4.	select countryname,sum(population) from country group by countryname having sum(population)>1000;
 

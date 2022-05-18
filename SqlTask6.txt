@@ -1,13 +1,31 @@
 Query:
 
-3.
+2.	select email from market_user where email LIKE '%=_%$%' ESCAPE '=' or email like '%$%=$%' ESCAPE '=';
+
+3.	advisor_id: 11236
+
+	select 
+		mf.advisor_id, mfs.amc_code, sum((mf.total_balance_Unit * mfs.nav)) Total_scheme_aum
+	FROM 
+		`mutual_fund_scheme_master` mfs
+		JOIN
+ 		( SELECT advisor_id, scheme_code, sum(balance_unit) total_balance_Unit FROM mutual_fund where advisor_id= 11236 GROUP BY scheme_code) mf
+ 		on mf.scheme_code= mfs.scheme_code
+ 	GROUP by mfs.amc_code
 
 4.	SELECT a.accord_amc_code, a.amc_name, a.amc_logo_url, b.totalaum from amc_master as a inner join accord_amc_aum as b on a.accord_amc_code = b.amc_code where a.amc_name  like '%Baroda%';
 
 5.	select advisor_id, count(client_id) from mutual_fund  GROUP by advisor_id;
 
-6*.	select mf.client_id, mft.mutual_fund_id, mft.scheme_code , mft.units , nav.nav from  mutual_fund as mf inner join (SELECT * FROM `mutual_fund_transaction` where transaction_date >= subdate(curdate(), interval 5 day)) as mft on mf.id= mft.mutual_fund_id  inner join historical_nav as nav on mft.scheme_code=nav.scheme_code
+6.	select mf.client_id, sum(mft.amount * mft.effect) 'Last_5Day_Aum' from mutual_fund mf inner JOIN (select  * from mutual_fund_transaction where transaction_date  BETWEEN '2022-5-13' and '2022-5-17' ) mft on mf.id=mft.mutual_fund_id where mf.client_id=193237
 
-7.	SELECT a.advisor_id, sum(a.balance_unit * b.navrs) as Advisor_aum from	(select * from mutual_fund where rt_master_id in (2,14)) as a inner join accord_currentnav as b on a.scheme_code = b.schemecode GROUP BY advisor_id
+7.	select 
+		mf.advisor_id, sum(mf.Total_Scheme_balance * mfs.nav) Total_Scheme_Aum 
+	from 
+		(select advisor_id, scheme_code, sum(balance_unit) Total_Scheme_Balance from mutual_fund where rt_master_id in (2,14) and advisor_id=5656 GROUP by scheme_code) mf
+		left join 
+		mutual_fund_scheme_master mfs 
+		on
+		mf.scheme_code= mfs.scheme_code
 
 8.	select scheme_name , balance_unit from mutual_fund WHERE folio_number='5979191/55' and scheme_code='D872' and parent_id=5432 and arn_ria_details_id =79

@@ -28,4 +28,4 @@ Query:
 		on
 		mf.scheme_code= mfs.scheme_code
 
-8.	select scheme_name , balance_unit from mutual_fund WHERE folio_number='5979191/55' and scheme_code='D872' and parent_id=5432 and arn_ria_details_id =79
+8.	SELECT sum(balance_unit) Total_balance_unit, folio_number, scheme_code,arn_ria_details_id FROM `mutual_fund`  WHERE folio_number='4946040/67' and scheme_code='D872' and parent_id=5432 and arn_ria_details_id =79

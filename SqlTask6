@@ -100,3 +100,12 @@ historical_nav h
 	select amfi_code, nav, date from historical_nav hnav where date >'2022-5-1' and (amfi_code,date) in (select amfi_code, max(date) from historical_nav where date >= '2022-5-1' group by amfi_code )
 
 
+
+9. 	Find the Total Aum of Client before 26 Jan 2022
+	
+	select client_id, sum( amount* effect ) from 
+	mutual_fund mf
+	inner join 
+	mutual_fund_transaction mft
+	on mf.folio_number = mft.folio_number
+	where client_id = 208428 and transaction_date <= '2022-1-26'
